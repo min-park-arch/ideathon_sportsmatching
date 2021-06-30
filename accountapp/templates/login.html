@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;700&display=swap');
+    .nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 150px;
+      width: 100%;
+      }
+
+    .bgImage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      background: center;
+      opacity: 0.8;
+      }
+
+    body {
+      text-align: center;
+      color: #1A0038;
+      background-color: #f5f5f5;
+      font-family: 'Noto Sans KR', sans-serif;}
+
+
+  </style>
+</head>
+<body>
+  <div class="bgImage">
+    <!--배경사진-->
+  </div>
+
+  <div class="nav">
+    <!--로고-->
+    <a href="{% url 'home' %}"><img src="{% static 'logoball.png' %}" height = "100px" alt=""></a>
+  </div>
+  <div>
+    <h1>L O G I N</h1>
+    <h5>아마추어 축구팀 매칭 서비스</h5>
+    <br><br>
+    <form action="{% url 'login' %}" method="POST">
+      {% csrf_token %}
+      {{form.as_p}}
+      <button type="submit" class="btn btn-lg" style="background-color: #FF4800;">로그인</button>
+    </form>
+    <br><br><br>
+  </div>
+
+  <div>    
+    <br><br><br>
+    <a href=""><button type="button" class="btn btn-secondary btn-lg">회원가입하러 가기</button></a>
+  </div>
+
+</body>
+</html>

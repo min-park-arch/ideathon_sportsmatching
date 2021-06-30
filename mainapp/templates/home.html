@@ -34,9 +34,6 @@
       background-color: #f5f5f5;
       font-family: 'Noto Sans KR', sans-serif;}
 
-    h1 {
-      font-family: 'Noto Sans KR', sans-serif;
-    }
 
   </style>
 </head>
@@ -48,25 +45,35 @@
 
   <div class="nav">
     <!--로고-->
-    <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" alt=""></a>
-  </div>
-  <div>
-    <h6>실력이 맞아야 재밌는데,</h6>
-    <h6>시간은 이때만 가능하고,</h6>
-    <h6>이 팀은 연령대가 어느 정도이려나,</h6>
-    <h6>...</h6>
-    <br>
-    <h3>더 이상 스트레스 없이</h3>
-    <h1>가장 잘 맞는 상대팀을 만나보세요</h1>
-    <br><br><br>
+    <a href="{% url 'home' %}"><img src="{% static 'logoball.png' %}" alt=""></a>
   </div>
 
-  <div>
-    <h5>아마추어 축구팀 매칭 서비스</h5>
-    <br>
-    <a href=""><button type="button" class="btn btn-lg" style="background-color: #FF4800;">지금 가입하러 가기</button></a>
-    <a href=""><button type="button" class="btn btn-secondary btn-lg">로그인하기</button></a>
-  </div>
-
+  {% if user.is_authenticated %}
+    <div>
+      <br><br>
+      <h1>{{user.username}}님, 환영합니다 !</h1>
+      <br><br><br><br>
+      <a href="{% url 'signup' %}"><button type="button" class="btn btn-lg" style="background-color: #FF4800;">팀 등록하러 가기</button></a>
+      <a href="{% url 'logout' %}"><button type="button" class="btn btn-secondary btn-lg">로그아웃하기</button></a>
+    </div>
+  {% else %}
+    <div>
+      <h6>실력이 맞아야 재밌는데,</h6>
+      <h6>시간은 이때만 가능하고,</h6>
+      <h6>이 팀은 연령대가 어느 정도이려나,</h6>
+      <h6>...</h6>
+      <br>
+      <h3>더 이상 스트레스 없이</h3>
+      <h1><strong>가장 잘 맞는 상대팀</strong>을 만나보세요</h1>
+      <br><br><br>
+    </div>
+    <div>
+      <h5>아마추어 축구팀 매칭 서비스</h5>
+      <br>
+      <a href="{% url 'signup' %}"><button type="button" class="btn btn-lg" style="background-color: #FF4800;">지금 가입하러 가기</button></a>
+      <a href="{% url 'login' %}"><button type="button" class="btn btn-secondary btn-lg">로그인하기</button></a>
+    </div>
+  {% endif %}
 </body>
 </html>
+
